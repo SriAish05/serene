@@ -1,0 +1,362 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Make Spline canvases fully transparent */
+.spline-transparent canvas {
+  background: transparent !important;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* SERENE Mental Health Platform Design System */
+    --background: 0 0% 100%;
+    --foreground: 135 38% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 135 38% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 135 38% 15%;
+
+    /* Primary: Calming Green #2B7542 */
+    --primary: 135 38% 31%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Primary variants for different states */
+    --primary-light: 135 38% 45%;
+    --primary-dark: 135 38% 25%;
+
+    /* Secondary: Soft cream for button active states #ece9d9 */
+    --secondary: 50 25% 91%;
+    --secondary-foreground: 135 38% 31%;
+
+    /* Muted: Soft neutrals */
+    --muted: 210 20% 96%;
+    --muted-foreground: 135 15% 45%;
+
+    /* Accent: Gentle green tints */
+    --accent: 135 25% 92%;
+    --accent-foreground: 135 38% 31%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 135 15% 88%;
+    --input: 135 15% 88%;
+    --ring: 135 38% 31%;
+
+    --radius: 0.75rem;
+
+    /* Calming gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-soft: linear-gradient(180deg, hsl(var(--background)), hsl(var(--accent)));
+    --gradient-bunny: linear-gradient(145deg, hsl(var(--accent)), hsl(var(--secondary)));
+
+    /* Shadows for depth */
+    --shadow-soft: 0 4px 20px -8px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 2px 16px -4px hsl(var(--primary) / 0.1);
+    --shadow-bunny: 0 8px 32px -8px hsl(var(--primary) / 0.2);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-gentle: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 135 38% 15%;
+    --sidebar-primary: 135 38% 31%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 135 25% 95%;
+    --sidebar-accent-foreground: 135 38% 31%;
+    --sidebar-border: 135 15% 90%;
+    --sidebar-ring: 135 38% 31%;
+  }
+
+  .dark {
+    /* Dark theme tuned to hex #20211e (≈ hsl(80 5% 12%)) */
+    --background: 80 5% 12%;
+    --foreground: 80 10% 92%;
+
+    --card: 80 6% 14%;
+    --card-foreground: 80 10% 92%;
+
+    --popover: 80 6% 14%;
+    --popover-foreground: 80 10% 92%;
+
+    /* Keep primary green for contrast */
+    --primary: 135 35% 65%;
+    --primary-foreground: 80 5% 12%;
+    --primary-light: 135 35% 75%;
+    --primary-dark: 135 35% 55%;
+
+    --secondary: 80 5% 18%;
+    --secondary-foreground: 135 35% 70%;
+
+    --muted: 80 5% 18%;
+    --muted-foreground: 80 6% 70%;
+
+    --accent: 80 5% 16%;
+    --accent-foreground: 135 35% 70%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 80 10% 92%;
+
+    --border: 80 5% 22%;
+    --input: 80 5% 22%;
+    --ring: 135 35% 65%;
+    
+    --sidebar-background: 80 5% 12%;
+    --sidebar-foreground: 80 10% 92%;
+    --sidebar-primary: 135 35% 65%;
+    --sidebar-primary-foreground: 80 5% 12%;
+    --sidebar-accent: 80 5% 16%;
+    --sidebar-accent-foreground: 135 35% 70%;
+    --sidebar-border: 80 5% 22%;
+    --sidebar-ring: 135 35% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Bunny avatar animations */
+  .bunny-float {
+    animation: gentle-float 4s ease-in-out infinite;
+  }
+  
+  .bunny-expand {
+    animation: bunny-grow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .feature-slide-in {
+    animation: slide-from-left 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Calming button hover effects */
+  .btn-calm {
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-calm:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .btn-calm:active {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-soft {
+    background: var(--gradient-soft);
+  }
+  
+  .gradient-bunny {
+    background: var(--gradient-bunny);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-bunny {
+    box-shadow: var(--shadow-bunny);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-gentle {
+    transition: var(--transition-gentle);
+  }
+  
+  .animate-bounce-in {
+    animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .animate-gentle-bounce {
+    animation: gentle-bounce 2s ease-in-out infinite;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+  
+  .animate-confetti {
+    animation: confetti 3s ease-out forwards;
+  }
+  
+  /* Smooth scrolling for dashboard */
+  .dashboard-scroll {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
+  }
+  
+  .dashboard-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .dashboard-scroll::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+  
+  .dashboard-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+  
+  .dashboard-scroll::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-dark));
+  }
+  
+  /* Box Breathing Animation */
+  .breathing-square {
+    animation: breathingCycle 16s infinite ease-in-out;
+  }
+  
+  @keyframes breathingCycle {
+    0%, 25% {
+      transform: scale(1.0);
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+    25%, 50% {
+      transform: scale(1.1);
+      border-color: rgba(255, 255, 255, 1.0);
+    }
+    50%, 75% {
+      transform: scale(0.9);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+    75%, 100% {
+      transform: scale(0.8);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  
+  .breathing-fill {
+    animation: breathingFill 16s infinite ease-in-out;
+  }
+  
+  @keyframes breathingFill {
+    0%, 25% {
+      height: 0%;
+      opacity: 0.8;
+    }
+    25%, 50% {
+      height: 100%;
+      opacity: 1.0;
+    }
+    50%, 75% {
+      height: 0%;
+      opacity: 0.6;
+    }
+    75%, 100% {
+      height: 0%;
+      opacity: 0.4;
+    }
+  }
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes bunny-grow {
+  0% { 
+    transform: scale(1) translate(0, 0);
+    border-radius: 50%;
+  }
+  100% { 
+    transform: scale(1) translate(0, 0);
+    border-radius: 0;
+  }
+}
+
+@keyframes slide-from-left {
+  0% { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-from-right {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-from-right {
+  0% { 
+    transform: translateX(100%); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateX(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes bounce-in {
+  0% { 
+    transform: scale(0.3) translateY(-50px); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.1) translateY(0); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: scale(1) translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes gentle-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes confetti {
+  0% { 
+    transform: translateY(-100vh) rotate(0deg); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateY(100vh) rotate(720deg); 
+    opacity: 0; 
+  }
+}
